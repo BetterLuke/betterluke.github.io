@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+
+    <title>Tmux使用手账</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="../index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Tmux使用手账" />
+    <meta property="og:description" content="因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/tmuxzhe-teng-xiao-ji/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3" />
+    <meta property="article:published_time" content="2018-02-14T16:24:18.000Z" />
+    <meta property="article:modified_time" content="2018-02-14T16:24:18.000Z" />
+    <meta property="article:tag" content="Linux" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tmux使用手账" />
+    <meta name="twitter:description" content="因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/tmuxzhe-teng-xiao-ji/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Linux" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="810" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "Tmux使用手账",
+    "url": "https://ghost.blingblingbling.life/tmuxzhe-teng-xiao-ji/",
+    "datePublished": "2018-02-14T16:24:18.000Z",
+    "dateModified": "2018-02-14T16:24:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=b87d51aaf5fa9874691bb48a5253b0e3",
+        "width": 1080,
+        "height": 810
+    },
+    "keywords": "Linux",
+    "description": "因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../../rss/index.html" />
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,600,400" />
+    <style amp-custom>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{margin:0.67em 0;font-size:2em}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{position:relative;vertical-align:baseline;font-size:75%;line-height:0}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}amp-img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;color:inherit;font:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;border:1px solid #c0c0c0}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}html{max-height:100%;height:100%;font-size:62.5%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)}body{max-height:100%;height:100%;color:#3a4145;background:#f4f8fb;letter-spacing:0.01rem;font-family:"Merriweather", serif;font-size:1.8rem;line-height:1.75em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"kern" 1;-moz-font-feature-settings:"kern" 1;-o-font-feature-settings:"kern" 1}::-moz-selection{background:#d6edff}::selection{background:#d6edff}h1,h2,h3,h4,h5,h6{margin:0 0 0.3em 0;color:#2e2e2e;font-family:"Open Sans", sans-serif;line-height:1.15em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-moz-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-o-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1}h1{text-indent:-2px;letter-spacing:-1px;font-size:2.6rem}h2{letter-spacing:0;font-size:2.4rem}h3{letter-spacing:-0.6px;font-size:2.1rem}h4{font-size:1.9rem}h5{font-size:1.8rem}h6{font-size:1.8rem}a{color:#4a4a4a}a:hover{color:#111}p,ul,ol,dl{margin:0 0 2.5rem 0;font-size:1.5rem;text-rendering:geometricPrecision;-webkit-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-moz-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-o-font-feature-settings:"liga" 1, "onum" 1, "kern" 1}ol,ul{padding-left:2em}ol ol,ul ul,ul ol,ol ul{margin:0 0 0.4em 0;padding-left:2em}dl dt{float:left;clear:left;overflow:hidden;margin-bottom:1em;width:180px;text-align:right;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-bottom:1em;margin-left:200px}li{margin:0.4em 0}li li{margin:0}hr{display:block;margin:1.75em 0;padding:0;height:1px;border:0;border-top:#efefef 1px solid}blockquote{box-sizing:border-box;margin:1.75em 0 1.75em 0;padding:0 0 0 1.75em;border-left:#4a4a4a 0.4em solid;-moz-box-sizing:border-box}blockquote p{margin:0.8em 0;font-style:italic}blockquote small{display:inline-block;margin:0.8em 0 0.8em 1.5em;color:#ccc;font-size:0.9em}blockquote small:before{content:"\2014 \00A0"}blockquote cite{font-weight:700}blockquote cite a{font-weight:normal}mark{background-color:#fdffb6}code,tt{padding:1px 3px;border:#e3edf3 1px solid;background:#f7fafb;border-radius:2px;white-space:pre-wrap;font-family:Inconsolata, monospace, sans-serif;font-size:0.85em;font-feature-settings:"liga" 0;-webkit-font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" 0}pre{overflow:auto;box-sizing:border-box;margin:0 0 1.75em 0;padding:10px;width:100%;border:#e3edf3 1px solid;background:#f7fafb;border-radius:3px;white-space:pre;font-family:Inconsolata, monospace, sans-serif;font-size:0.9em;-moz-box-sizing:border-box}pre code,pre tt{padding:0;border:none;background:transparent;white-space:pre-wrap;font-size:inherit}kbd{display:inline-block;margin-bottom:0.4em;padding:1px 8px;border:#ccc 1px solid;background:#f4f4f4;border-radius:4px;box-shadow:0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 #fff inset;color:#666;text-shadow:#fff 0 1px 0;font-size:0.9em;font-weight:700}table{box-sizing:border-box;margin:1.75em 0;max-width:100%;width:100%;background-color:transparent;-moz-box-sizing:border-box}table th,table td{padding:8px;border-top:#efefef 1px solid;vertical-align:top;text-align:left;line-height:20px}table th{color:#000}table caption + thead tr:first-child th,table caption + thead tr:first-child td,table colgroup + thead tr:first-child th,table colgroup + thead tr:first-child td,table thead:first-child tr:first-child th,table thead:first-child tr:first-child td{border-top:0}table tbody + tbody{border-top:#efefef 2px solid}table table table{background-color:#fff}table tbody > tr:nth-child(odd) > td,table tbody > tr:nth-child(odd) > th{background-color:#f6f6f6}table.plain tbody > tr:nth-child(odd) > td,table.plain tbody > tr:nth-child(odd) > th{background:transparent}iframe,amp-iframe,.fluid-width-video-wrapper{display:block;margin:1.75em 0}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper amp-iframe{margin:0}textarea,select,input{margin:0 0 5px 0;padding:6px 9px;width:260px;outline:0;border:#e7eef2 1px solid;background:#fff;border-radius:4px;box-shadow:none;font-family:"Open Sans", sans-serif;font-size:1.6rem;line-height:1.4em;font-weight:100;-webkit-appearance:none}textarea{min-width:250px;min-height:80px;max-width:340px;width:100%;height:auto}input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="week"]:focus,input[type="time"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,textarea:focus{outline:none;outline-width:0;border:#bbc7cc 1px solid;background:#fff}select{width:270px;height:30px;line-height:30px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.main-header{position:relative;display:table;overflow:hidden;box-sizing:border-box;width:100%;height:50px;background:#5ba4e5 no-repeat center center;background-size:cover;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.content{background:#fff;padding-top:15px}.blog-title,.content{margin:auto;max-width:600px}.blog-title a{display:block;padding-right:16px;padding-left:16px;height:50px;color:#fff;text-decoration:none;font-family:"Open Sans", sans-serif;font-size:16px;line-height:50px;font-weight:600}.post{position:relative;margin-top:0;margin-right:16px;margin-left:16px;padding-bottom:0;max-width:100%;border-bottom:#ebf2f6 1px solid;word-wrap:break-word;font-size:0.95em;line-height:1.65em}.post-header{margin-bottom:1rem}.post-title{margin-bottom:0}.post-title a{text-decoration:none}.post-meta{display:block;margin:3px 0 0 0;color:#9eabb3;font-family:"Open Sans", sans-serif;font-size:1.3rem;line-height:2.2rem}.post-meta a{color:#9eabb3;text-decoration:none}.post-meta a:hover{text-decoration:underline}.post-meta .author{margin:0;font-size:1.3rem;line-height:1.3em}.post-date{display:inline-block;text-transform:uppercase;white-space:nowrap;font-size:1.2rem;line-height:1.2em}.post-image{margin:0;padding-top:3rem;padding-bottom:30px;border-top:1px #E8E8E8 solid}.post-content amp-img,.post-content amp-anim{position:relative;left:50%;display:block;padding:0;min-width:0;max-width:112%;width:calc(100% + 32px);height:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%)}.footnotes{font-size:1.3rem;line-height:1.6em;font-style:italic}.footnotes li{margin:0.6rem 0}.footnotes p{margin:0}.footnotes p a:last-child{text-decoration:none}.site-footer{position:relative;margin:0 auto 20px auto;padding:1rem 15px;max-width:600px;color:rgba(0,0,0,0.5);font-family:"Open Sans", sans-serif;font-size:1.1rem;line-height:1.75em}.site-footer a{color:rgba(0,0,0,0.5);text-decoration:none;font-weight:bold}.site-footer a:hover{border-bottom:#bbc7cc 1px solid}.poweredby{display:block;float:right;width:45%;text-align:right}.copyright{display:block;float:left;width:45%}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="main-header">
+        <nav class="blog-title">
+            <a href="../../index.html">TimePocket</a>
+        </nav>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">Tmux使用手账</h1>
+                <section class="post-meta">
+                    <p class="author">by <a href="../../author/luke/index.html">luke</a></p>
+                    <time class="post-date" datetime="2018-02-14">2018-02-14</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3" width="600" height="400" layout="responsive"></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <h1 id="tmux">tmux折腾小记</h1>
+<p>自从用了WSL这个神奇的东东，就可以优雅的在windows下使用Linux了，自己对于WSL的使用场景还在摸索中，偶尔使用grep，sed，perl练习正则什么的，还有就是git。就是因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。</p>
+<p>就像图片中看到的那样，默认的bash页面简直是简陋至极：</p>
+<p><amp-img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/ugly-cmd.png?raw=true" alt width="1225" height="690" layout="responsive"></amp-img></p>
+<p>在这里，我不吐槽UI的骨感，只是没有类似原生linux中gnome或者kde多窗口终端页面，对于复杂的终端任务，使用起来就颇有不爽。在WSL中安装tmux就可很好实现多终端窗口的效果，上手体验后，大呼神器。</p>
+<p>其中，多窗格可以实现一屏多终端，还有，多窗口的功能类似于桌面系统的虚拟桌面，可以很好的实现负空间理念，更加有效的提高了终端的交互性。还有，会话(session)功能感觉目前还用不着，没有摸索。</p>
+<p>整体的一个框架图就是：</p>
+<p><amp-img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/tmux-structure.png?raw=true" alt width="611" height="471" layout="responsive"></amp-img></p>
+<p>对于tmux，自己的本次掌握的主要是两点：</p>
+<ul>
+<li>理解tmux的配置文件<code>.tmux.conf</code></li>
+<li>掌握主要的快捷键</li>
+</ul>
+<h2 id="tmux">实用的tmux配置文件</h2>
+<pre><code class="language-bash">#-- base --#
+
+set -g default-terminal "screen-256color"
+set -g display-time 3000
+set -g history-limit 65535
+set -g mouse-select-pane on
+
+#-- bindkeys --#
+
+set -g prefix C-a
+unbind C-b
+bind a send-prefix
+
+unbind '"'
+bind - splitw -v
+unbind %
+bind | splitw -h
+
+bind k select-pane -t -U
+bind j select-pane -t -D
+bind h select-pane -t -L
+bind l select-pane -t -R
+
+bind C-k resize-pane -U 10
+bind C-j resize-pane -D 10
+bind C-h resize-pane -L 10
+bind C-l resize-pane -R 10
+
+bind C-u swap-pane -U
+bind C-d swap-pane -D
+
+bind C-e last
+bind q killp
+
+bind '~' splitw htop
+bind ! splitw ncmpcpp
+bind m command-prompt "splitw 'exec man %%'"
+bind @ command-prompt "splitw 'exec perldoc -t -f %%'"
+bind * command-prompt "splitw 'exec perldoc -t -v %%'"
+bind % command-prompt "splitw 'exec perldoc -t %%'"
+bind / command-prompt "splitw 'exec ri -T %% | less'"
+
+#-- statusbar --#
+
+set -g status-right "#[fg=green]#(/usr/bin/uptime)#[default]  #[fg=green]#(cut -d ' ' -f 1-3 /proc/loadavg)#[default]"
+set -g status-right-attr bright
+
+set -g status-bg black
+set -g status-fg yellow
+setw -g window-status-current-attr bright
+#setw -g window-status-current-bg red
+#setw -g window-status-current-fg white
+
+set -g status-utf8 on
+set -g status-interval 1
+
+#set -g visual-activity on
+#setw -g monitor-activity on
+
+setw -g automatic-rename on
+
+set -g status-keys vi
+setw -g mode-keys vi
+</code></pre>
+<p>贴上使用上述配置文件后，更换了prefix的默认组合<code>Ctrl-b</code>(需要两个手指，一点都不人工学好不好)为<code>Ctrl-a</code>；优化了一些快捷键；美化了statusbar； 最后：WSL的bash就变成了这个样子：</p>
+<p><amp-img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/wsl-tmux.png?raw=true" alt width="1257" height="728" layout="responsive"></amp-img></p>
+<blockquote>
+<p>ALT + ENTER 可以让CMD进入全屏模式</p>
+</blockquote>
+<h2 id>快捷键常备：</h2>
+<ul>
+<li>
+<p>复制文本流程：<code>prefix-[</code> ==&gt; 进入COPY-MODE ==&gt; 'space空格键启动选中' ==》 <code>hjkl移动选你所需</code> ==&gt; <code>ENTER完成复制并自动退出了COPY-MODE</code></p>
+</li>
+<li>
+<p>粘贴：<code>prefix-]</code> ==&gt; 粘贴buffer的内容的到光标处</p>
+</li>
+<li>
+<p><code>tmux show-buffer</code>：打印出缓存器里最新的内容</p>
+</li>
+<li>
+<p><code>prefix-#</code>: list buffer</p>
+</li>
+<li>
+<p><code>prefix-=</code>: list buffer plus 可以选中内容的index，然后打印出来</p>
+</li>
+<li>
+<p><code>prefix-c</code>: 创建新的窗口，默认名字为一个数字，如果自己想修改名字，可以在终端键入<code>tmux rename-window -t target_window_name target_window_newname</code>.</p>
+</li>
+<li>
+<p><code>prefix-,</code>: 修改当前窗口的名字。</p>
+</li>
+</ul>
+<p>其他的自己还不熟，如果有需要，就自己查查<code>man tmux</code>吧。</p>
+<h1 id>问题来了</h1>
+<p>好吧，外貌的问题是解决了，可是在使用的过程中便发现了新的问题：在tmux的面板里，复制的内容不能同步在系统的粘贴版里，而且这个问题不仅仅出现在WSL这样的环境里，像Linux和MacOS都有出现。<br />
+看网上资料说，tmux使用了类似vim独立寄存器的原理，具有粘贴版，所以就有了系统的粘贴版和tmux粘贴版是相互隔离的，也就是说，在tmux的copy-mode里复制的内容，只是存在目前的bash运行环境里，不能逃出CMD窗口。</p>
+<h1 id>解决复制文本这个尴尬的问题</h1>
+<p>然后，我就在想，要是以后需要复制大段的代码什么的，岂不会现场发难，与其担忧未来出问题，还不如现在就着手解决问题。</p>
+<p>经过各种谷歌，在github的某个项目issue里找到了灵感：</p>
+<ul>
+<li>单个pane情况：如果当前pane是全屏状态，就可以毫无痛点的使用鼠标选择复制，而且还支持CMD的quickedit模式，所以就不存在问题。</li>
+<li>多pane情况：在多pane的模式下，你就会发现，上面的那种方法就不行了，因为此时的tmux正进入到类似于vim多窗格模式，所有的复制内容都会进入到独立的寄存器中。好吧，解决的方法就是：首先，使用prefix-z使当前的pane最大化为全屏幕，然后按住‘Shift’,就可以激活鼠标复制模式，然后就可以复制自己需要的内容啦，此时，你所复制的内容就会存在于系统的寄存器里。反之向tmux的面板里粘贴东西，就是同样的按住‘Shift’,单击鼠标的右键就可以复制当前剪贴板的文件到tmux的面板中。</li>
+</ul>
+<p>至此，一个比较完美的WSL下终端多窗口的方案就是这个样子。</p>
+<p>保持分享精神：</p>
+<p><amp-img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/github-tmux-issue.png?raw=true" alt width="1310" height="573" layout="responsive"></amp-img></p>
+<h1 id="tmux">让终端与Tmux一起启动</h1>
+<p>很快就发现，如果每次使用的开始都需要在终端输入<code>tmux</code>才能激活使用，感觉会很麻烦，最好能够让Tmux和终端一起启动，解决办法就是在你的<code>.bashrc</code>文件里添加如下脚本：</p>
+<pre><code class="language-bash">if [[ "$TERM" != "screen-256color" ]]
+then
+    tmux attach-session -t "$USER" || tmux new-session -s "$USER"
+    exit
+fi
+</code></pre>
+<p>退出，重新打开终端就可以啦！</p>
+<h1 id>参考链接</h1>
+<ul>
+<li><a href="http://blog.jobbole.com/87584/">Tmux 速成教程：技巧和调整</a></li>
+<li><a href="https://memeda.github.io/%E6%8A%80%E6%9C%AF/2016/08/03/WslBashOnWindowsConfig.html">Windows Subsystem for Linux(WSL)的配置</a><br />
+: 使用ln创建链接至windows用户目录的思路很赞。</li>
+<li><a href="https://www.w3cschool.cn/tmux/tji9dozt.html">一本很实用Tmux的书</a></li>
+</ul>
+
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="../../index.html">TimePocket</a> &copy; 2019</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+</body>
+</html>

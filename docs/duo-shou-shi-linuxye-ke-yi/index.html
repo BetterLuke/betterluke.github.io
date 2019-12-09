@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>多手势，Linux也可以</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=55c99b5a62.css" />
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="多手势，Linux也可以" />
+    <meta property="og:description" content="对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/duo-shou-shi-linuxye-ke-yi/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f" />
+    <meta property="article:published_time" content="2017-07-20T18:38:00.000Z" />
+    <meta property="article:modified_time" content="2018-02-06T17:15:57.000Z" />
+    <meta property="article:tag" content="Linux" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="多手势，Linux也可以" />
+    <meta name="twitter:description" content="对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/duo-shou-shi-linuxye-ke-yi/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Linux" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="720" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "多手势，Linux也可以",
+    "url": "https://ghost.blingblingbling.life/duo-shou-shi-linuxye-ke-yi/",
+    "datePublished": "2017-07-20T18:38:00.000Z",
+    "dateModified": "2018-02-06T17:15:57.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=561a49d575fb82204e6eab3f7e8dbd9f",
+        "width": 1080,
+        "height": 720
+    },
+    "keywords": "Linux",
+    "description": "对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。\n",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../rss/index.html" />
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113807305-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113807305-1');
+</script>
+
+</head>
+<body class="post-template tag-linux">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="../index.html">TimePocket</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../index.html">Home</a></li>
+    <li class="nav-me" role="menuitem"><a href="../author/luke/index.html">Me</a></li>
+    <li class="nav-about" role="menuitem"><a href="../about/index.html">About</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">多手势，Linux也可以</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://ghost.blingblingbling.life/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-linux ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="../tag/linux/index.html">Linux</a>
+                </section>
+
+                <h1 class="post-full-title">多手势，Linux也可以</h1>
+
+                <p class="post-full-custom-excerpt">对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。
+</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>luke</h2>
+                                        <p>Read <a href="../author/luke/index.html">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="../author/luke/index.html" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="../author/luke/index.html">luke</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2017-07-20">20 Jul 2017</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 4 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f 300w,
+                            https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f 600w,
+                            https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f 1000w,
+                            https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f"
+                    alt="多手势，Linux也可以"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><h1 id="">让触摸板支持多手势</h1>
+<p>之前有一个古老的工具<code>touchegg</code>只不过多年没有更新，而且上一次使用linux的时候还是没有成功。最近发现了两种方案可以支持Ubuntu实现多手势：</p>
+<ul>
+<li>基于Ruby的<code>Fusuma</code> <a href="https://github.com/iberianpig/fusuma">Github</a></li>
+<li>基于Gnome Extension 的插件增强 <a href="https://extensions.gnome.org/extension/1253/extended-gestures/">下载地址</a></li>
+</ul>
+<p>我首先尝试的是后者，可是插件要求的GTK+版本是3.20，而我的是3.18，所以不兼容。无果，尝试前者，我就详细说一下过程：</p>
+<ul>
+<li>严格按照Author的步骤，每一步都要在终端运行，特别是添加当前用户为input组具有读取权限。</li>
+<li>基于你的系统修改配置文件，我的桌面环境是Gnome，示例：</li>
+</ul>
+<pre><code>swipe:
+  3: 
+    left: 
+      shortcut: 'alt+Tab'
+    right: 
+      shortcut: ''
+    up: 
+      shortcut: 'super+s'
+    down: 
+      shortcut: 'super+d'
+  4:
+    left: 
+      shortcut: ''
+    right: 
+      shortcut: ''
+    up: 
+      shortcut: 'ctrl+super+Down'
+    down: 
+      shortcut: 'ctrl+super+Up'
+pinch:
+
+in:
+    shortcut: ''
+out:
+    shortcut: ''
+
+threshold:
+  swipe: 0.3
+  pinch: 1
+
+interval:
+  swipe: 0.3
+  pinch: 1
+
+</code></pre>
+<ul>
+<li>添加开机启动：使用Gnome内置的程序<code>启动应用程序</code>，如下：<br>
+<img src="https://i.imgur.com/w4JMjN1.png" alt="enter image description here"></li>
+</ul>
+<hr>
+<h2 id="">后文</h2>
+<p>我按照这篇教程升级了自己的GTK+到3.20，开启了前文所说的那个插件，感觉会比第一种的实现方式灵敏度更好：</p>
+<p><img src="https://i.imgur.com/DgPx0n0.png" alt="enter image description here"></p>
+<p>值得注意的是。这个插件的运行环境要求系统前段的图像服务器为<code>wayland session</code> ，而不能是ubuntu17.04版本默认的xorg（Fedora25和ubuntu17.10默认wayland，并且即将到来的ubuntu18.04默认会是wayland）。所以需要手动安装一下wayland，具体做法：</p>
+<pre><code class="language-shell">sudo apt-get update
+sudo apt-get install gnome-session-wayland
+</code></pre>
+<p>参考链接：<br>
+<a href="https://www.howtoinstall.co/en/ubuntu/xenial/gnome-session-wayland">install wayland</a><br>
+<a href="https://www.howtoinstall.co/en/ubuntu/xenial/gnome-session-wayland?action=remove">uninstall wayland</a><br>
+安装完成后重启，在登录的时候切换成<code>wayland on gnome</code>就可以了，就可以发现刚刚的那个插件可以正常运行了。<br>
+<img src="https://fedoramagazine.org/wp-content/uploads/2014/10/gdm-wayland.png" alt="enter image description here"></p>
+<h3 id="bug">BUG 修复</h3>
+<p>开启wayland之后虽然触摸板多手势的问题得到了解决，简直爽翻了。但是一个名明显的问题出来了——fcitx输入法不能用了，具体表现时快捷键无法呼出输入法。</p>
+<p>解决方法如下：</p>
+<p>编辑<code>etc/environment</code>文件，添加如下代码，使fcitx输入法为全局状态：</p>
+<pre><code class="language-shell">export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+</code></pre>
+<p>记得修改环境变量文件后，<code>source</code>一下。手动点击<code>fcitx</code>的图标就可以看到输入法的窗口了，可以正常使用搜狗输入法啦。</p>
+<h2 id="">让触摸板打字的时候不乱飘</h2>
+<p>在AskUbuntu搜到类似的问题，看到有人的解决方案是使用ubuntu自带的syndaemon工具，不过我试过后竟然没有生效（我都习惯了），继续找，发现原因在于自身的系统拥有触摸板的两个驱动，需要禁止其中一个就可以了。</p>
+<p>查看当前的触摸板输入设备：</p>
+<pre><code>xinput list
+</code></pre>
+<p>检查是否是有两个触摸板设备，如果有两个touchpad设备，就可以采用我的方法如下：</p>
+<ol>
+<li>首先，禁止其中一个驱动的方法：</li>
+</ol>
+<p>编辑<code>/usr/share/X11/xorg.conf.d/51-synaptics-quirks.conf</code></p>
+<pre><code># Disable generic Synaptics device, as we're using
+# &quot;DLL0704:01 06CB:76AE Touchpad&quot;
+# Having multiple touchpad devices running confuses syndaemon
+Section &quot;InputClass&quot;
+        Identifier &quot;SynPS/2 Synaptics TouchPad&quot;
+        MatchProduct &quot;SynPS/2 Synaptics TouchPad&quot;
+        MatchIsTouchpad &quot;on&quot;
+        MatchOS &quot;Linux&quot;
+        MatchDevicePath &quot;/dev/input/event*&quot;
+        Option &quot;Ignore&quot; &quot;on&quot;
+EndSection
+</code></pre>
+<p>重启电脑。</p>
+<ol start="2">
+<li>然后,使用syndaemon就会生效了。</li>
+</ol>
+<pre><code>syndaemon -i 1 -d -K  //数字的单位是秒
+</code></pre>
+<p><strong>更新：</strong></p>
+<p>后来，如果把系统升级到ubuntu17.04就不会有触摸板乱飘的那个问题了。前文我所描述的那个问题是在我16.04遇到的。</p>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>More in</span> <a href="../tag/linux/index.html">Linux</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="../tmuxzhe-teng-xiao-ji/index.html">Tmux使用手账</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2018-02-14">14 Feb 2018</time> –
+                                        6 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="../shi-yong-de-ubuntuyou-hua-shou-zhang/index.html">实用的ubuntu优化手账</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2016-11-06">6 Nov 2016</time> –
+                                        3 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/linux/index.html">See all 2 posts
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-si-nian no-image no-image">
+
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../nian-qing-ren-de-yin-le/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">四年</div>
+                <h2 class="post-card-title">第一次参加年轻人们的音乐会</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>//站位符号，敬请等待:D</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2017-11-14">14 Nov 2017</time> <span class="bull">&bull;</span> 1 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-python ">
+
+    <a class="post-card-image-link" href="../pythonde-fang-fa-zhong-zai/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1525270087162-4ec81a020e55?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;66de84593e87041a7ee805f435e71774 300w,
+                    https://images.unsplash.com/photo-1525270087162-4ec81a020e55?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;66de84593e87041a7ee805f435e71774 600w,
+                    https://images.unsplash.com/photo-1525270087162-4ec81a020e55?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;66de84593e87041a7ee805f435e71774 1000w,
+                    https://images.unsplash.com/photo-1525270087162-4ec81a020e55?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;66de84593e87041a7ee805f435e71774 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1525270087162-4ec81a020e55?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;66de84593e87041a7ee805f435e71774"
+            alt="Python的方法重载"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../pythonde-fang-fa-zhong-zai/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Python</div>
+                <h2 class="post-card-title">Python的方法重载</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>python则比较特殊，它本身是动态语言，方法的参数是没有类型的，当调用传值的时候才确定参数的类型。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2017-06-14">14 Jun 2017</time> <span class="bull">&bull;</span> 1 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../index.html">TimePocket</a> &copy; 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="../index.html">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="../assets/built/casper.js%3Fv=55c99b5a62"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

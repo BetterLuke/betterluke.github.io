@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Tmux使用手账</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=55c99b5a62.css" />
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Tmux使用手账" />
+    <meta property="og:description" content="因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/tmuxzhe-teng-xiao-ji/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3" />
+    <meta property="article:published_time" content="2018-02-14T16:24:18.000Z" />
+    <meta property="article:modified_time" content="2018-02-14T16:24:18.000Z" />
+    <meta property="article:tag" content="Linux" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tmux使用手账" />
+    <meta name="twitter:description" content="因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/tmuxzhe-teng-xiao-ji/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Linux" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="810" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "Tmux使用手账",
+    "url": "https://ghost.blingblingbling.life/tmuxzhe-teng-xiao-ji/",
+    "datePublished": "2018-02-14T16:24:18.000Z",
+    "dateModified": "2018-02-14T16:24:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=b87d51aaf5fa9874691bb48a5253b0e3",
+        "width": 1080,
+        "height": 810
+    },
+    "keywords": "Linux",
+    "description": "因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../rss/index.html" />
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113807305-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113807305-1');
+</script>
+
+</head>
+<body class="post-template tag-linux">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="../index.html">TimePocket</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../index.html">Home</a></li>
+    <li class="nav-me" role="menuitem"><a href="../author/luke/index.html">Me</a></li>
+    <li class="nav-about" role="menuitem"><a href="../about/index.html">About</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">Tmux使用手账</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://ghost.blingblingbling.life/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-linux ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="../tag/linux/index.html">Linux</a>
+                </section>
+
+                <h1 class="post-full-title">Tmux使用手账</h1>
+
+                <p class="post-full-custom-excerpt">因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>luke</h2>
+                                        <p>Read <a href="../author/luke/index.html">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="../author/luke/index.html" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="../author/luke/index.html">luke</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2018-02-14">14 Feb 2018</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 6 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 300w,
+                            https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 600w,
+                            https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 1000w,
+                            https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3"
+                    alt="Tmux使用手账"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><h1 id="tmux">tmux折腾小记</h1>
+<p>自从用了WSL这个神奇的东东，就可以优雅的在windows下使用Linux了，自己对于WSL的使用场景还在摸索中，偶尔使用grep，sed，perl练习正则什么的，还有就是git。就是因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。</p>
+<p>就像图片中看到的那样，默认的bash页面简直是简陋至极：</p>
+<p><img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/ugly-cmd.png?raw=true" alt=""></p>
+<p>在这里，我不吐槽UI的骨感，只是没有类似原生linux中gnome或者kde多窗口终端页面，对于复杂的终端任务，使用起来就颇有不爽。在WSL中安装tmux就可很好实现多终端窗口的效果，上手体验后，大呼神器。</p>
+<p>其中，多窗格可以实现一屏多终端，还有，多窗口的功能类似于桌面系统的虚拟桌面，可以很好的实现负空间理念，更加有效的提高了终端的交互性。还有，会话(session)功能感觉目前还用不着，没有摸索。</p>
+<p>整体的一个框架图就是：</p>
+<p><img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/tmux-structure.png?raw=true" alt=""></p>
+<p>对于tmux，自己的本次掌握的主要是两点：</p>
+<ul>
+<li>理解tmux的配置文件<code>.tmux.conf</code></li>
+<li>掌握主要的快捷键</li>
+</ul>
+<h2 id="tmux">实用的tmux配置文件</h2>
+<pre><code class="language-bash">#-- base --#
+
+set -g default-terminal &quot;screen-256color&quot;
+set -g display-time 3000
+set -g history-limit 65535
+set -g mouse-select-pane on
+
+#-- bindkeys --#
+
+set -g prefix C-a
+unbind C-b
+bind a send-prefix
+
+unbind '&quot;'
+bind - splitw -v
+unbind %
+bind | splitw -h
+
+bind k select-pane -t -U
+bind j select-pane -t -D
+bind h select-pane -t -L
+bind l select-pane -t -R
+
+bind C-k resize-pane -U 10
+bind C-j resize-pane -D 10
+bind C-h resize-pane -L 10
+bind C-l resize-pane -R 10
+
+bind C-u swap-pane -U
+bind C-d swap-pane -D
+
+bind C-e last
+bind q killp
+
+bind '~' splitw htop
+bind ! splitw ncmpcpp
+bind m command-prompt &quot;splitw 'exec man %%'&quot;
+bind @ command-prompt &quot;splitw 'exec perldoc -t -f %%'&quot;
+bind * command-prompt &quot;splitw 'exec perldoc -t -v %%'&quot;
+bind % command-prompt &quot;splitw 'exec perldoc -t %%'&quot;
+bind / command-prompt &quot;splitw 'exec ri -T %% | less'&quot;
+
+#-- statusbar --#
+
+set -g status-right &quot;#[fg=green]#(/usr/bin/uptime)#[default]  #[fg=green]#(cut -d ' ' -f 1-3 /proc/loadavg)#[default]&quot;
+set -g status-right-attr bright
+
+set -g status-bg black
+set -g status-fg yellow
+setw -g window-status-current-attr bright
+#setw -g window-status-current-bg red
+#setw -g window-status-current-fg white
+
+set -g status-utf8 on
+set -g status-interval 1
+
+#set -g visual-activity on
+#setw -g monitor-activity on
+
+setw -g automatic-rename on
+
+set -g status-keys vi
+setw -g mode-keys vi
+</code></pre>
+<p>贴上使用上述配置文件后，更换了prefix的默认组合<code>Ctrl-b</code>(需要两个手指，一点都不人工学好不好)为<code>Ctrl-a</code>；优化了一些快捷键；美化了statusbar； 最后：WSL的bash就变成了这个样子：</p>
+<p><img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/wsl-tmux.png?raw=true" alt=""></p>
+<blockquote>
+<p>ALT + ENTER 可以让CMD进入全屏模式</p>
+</blockquote>
+<h2 id="">快捷键常备：</h2>
+<ul>
+<li>
+<p>复制文本流程：<code>prefix-[</code> ==&gt; 进入COPY-MODE ==&gt; 'space空格键启动选中' ==》 <code>hjkl移动选你所需</code> ==&gt; <code>ENTER完成复制并自动退出了COPY-MODE</code></p>
+</li>
+<li>
+<p>粘贴：<code>prefix-]</code> ==&gt; 粘贴buffer的内容的到光标处</p>
+</li>
+<li>
+<p><code>tmux show-buffer</code>：打印出缓存器里最新的内容</p>
+</li>
+<li>
+<p><code>prefix-#</code>: list buffer</p>
+</li>
+<li>
+<p><code>prefix-=</code>: list buffer plus 可以选中内容的index，然后打印出来</p>
+</li>
+<li>
+<p><code>prefix-c</code>: 创建新的窗口，默认名字为一个数字，如果自己想修改名字，可以在终端键入<code>tmux rename-window -t target_window_name target_window_newname</code>.</p>
+</li>
+<li>
+<p><code>prefix-,</code>: 修改当前窗口的名字。</p>
+</li>
+</ul>
+<p>其他的自己还不熟，如果有需要，就自己查查<code>man tmux</code>吧。</p>
+<h1 id="">问题来了</h1>
+<p>好吧，外貌的问题是解决了，可是在使用的过程中便发现了新的问题：在tmux的面板里，复制的内容不能同步在系统的粘贴版里，而且这个问题不仅仅出现在WSL这样的环境里，像Linux和MacOS都有出现。<br>
+看网上资料说，tmux使用了类似vim独立寄存器的原理，具有粘贴版，所以就有了系统的粘贴版和tmux粘贴版是相互隔离的，也就是说，在tmux的copy-mode里复制的内容，只是存在目前的bash运行环境里，不能逃出CMD窗口。</p>
+<h1 id="">解决复制文本这个尴尬的问题</h1>
+<p>然后，我就在想，要是以后需要复制大段的代码什么的，岂不会现场发难，与其担忧未来出问题，还不如现在就着手解决问题。</p>
+<p>经过各种谷歌，在github的某个项目issue里找到了灵感：</p>
+<ul>
+<li>单个pane情况：如果当前pane是全屏状态，就可以毫无痛点的使用鼠标选择复制，而且还支持CMD的quickedit模式，所以就不存在问题。</li>
+<li>多pane情况：在多pane的模式下，你就会发现，上面的那种方法就不行了，因为此时的tmux正进入到类似于vim多窗格模式，所有的复制内容都会进入到独立的寄存器中。好吧，解决的方法就是：首先，使用prefix-z使当前的pane最大化为全屏幕，然后按住‘Shift’,就可以激活鼠标复制模式，然后就可以复制自己需要的内容啦，此时，你所复制的内容就会存在于系统的寄存器里。反之向tmux的面板里粘贴东西，就是同样的按住‘Shift’,单击鼠标的右键就可以复制当前剪贴板的文件到tmux的面板中。</li>
+</ul>
+<p>至此，一个比较完美的WSL下终端多窗口的方案就是这个样子。</p>
+<p>保持分享精神：</p>
+<p><img src="https://github.com/BetterLuke/lukeblog/blob/master/img/in-post/post-personal-tmux/github-tmux-issue.png?raw=true" alt=""></p>
+<h1 id="tmux">让终端与Tmux一起启动</h1>
+<p>很快就发现，如果每次使用的开始都需要在终端输入<code>tmux</code>才能激活使用，感觉会很麻烦，最好能够让Tmux和终端一起启动，解决办法就是在你的<code>.bashrc</code>文件里添加如下脚本：</p>
+<pre><code class="language-bash">if [[ &quot;$TERM&quot; != &quot;screen-256color&quot; ]]
+then
+    tmux attach-session -t &quot;$USER&quot; || tmux new-session -s &quot;$USER&quot;
+    exit
+fi
+</code></pre>
+<p>退出，重新打开终端就可以啦！</p>
+<h1 id="">参考链接</h1>
+<ul>
+<li><a href="http://blog.jobbole.com/87584/">Tmux 速成教程：技巧和调整</a></li>
+<li><a href="https://memeda.github.io/%E6%8A%80%E6%9C%AF/2016/08/03/WslBashOnWindowsConfig.html">Windows Subsystem for Linux(WSL)的配置</a><br>
+: 使用ln创建链接至windows用户目录的思路很赞。</li>
+<li><a href="https://www.w3cschool.cn/tmux/tji9dozt.html">一本很实用Tmux的书</a></li>
+</ul>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>More in</span> <a href="../tag/linux/index.html">Linux</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="../duo-shou-shi-linuxye-ke-yi/index.html">多手势，Linux也可以</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2017-07-20">20 Jul 2017</time> –
+                                        4 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="../shi-yong-de-ubuntuyou-hua-shou-zhang/index.html">实用的ubuntu优化手账</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2016-11-06">6 Nov 2016</time> –
+                                        3 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/linux/index.html">See all 2 posts
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-golang ">
+
+    <a class="post-card-image-link" href="../go/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 300w,
+                    https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 600w,
+                    https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 1000w,
+                    https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720"
+            alt="关于Go模块导入"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../go/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Golang</div>
+                <h2 class="post-card-title">关于Go模块导入</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>尽管无法避免，那就珍惜每一次犯错的机会，因为并不是所有的坑都像Go一样痛的镇静。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-03-16">16 Mar 2018</time> <span class="bull">&bull;</span> 2 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-python ">
+
+    <a class="post-card-image-link" href="../shi-jian-zhuan-huan-bu-zai-mi-luan/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1515554307882-9b0b53710835?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;88a5e73243d32ce7d45d38ccd7bf9387 300w,
+                    https://images.unsplash.com/photo-1515554307882-9b0b53710835?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;88a5e73243d32ce7d45d38ccd7bf9387 600w,
+                    https://images.unsplash.com/photo-1515554307882-9b0b53710835?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;88a5e73243d32ce7d45d38ccd7bf9387 1000w,
+                    https://images.unsplash.com/photo-1515554307882-9b0b53710835?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;88a5e73243d32ce7d45d38ccd7bf9387 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1515554307882-9b0b53710835?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;88a5e73243d32ce7d45d38ccd7bf9387"
+            alt="不迷乱，时间转换"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../shi-jian-zhuan-huan-bu-zai-mi-luan/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Python</div>
+                <h2 class="post-card-title">不迷乱，时间转换</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>Python 时间转换相关模块的简单使用。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-02-06">6 Feb 2018</time> <span class="bull">&bull;</span> 2 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../index.html">TimePocket</a> &copy; 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="../index.html">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="../assets/built/casper.js%3Fv=55c99b5a62"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>“时间口袋” All IN Docker</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=55c99b5a62.css" />
+
+    <meta name="description" content="如你所见，“时间口袋”是由Ghost这个轻量的动态博客框架搭建的。当你在谷歌上搜索Ghost搭建教程时，可以得到很多的优质答案教你如何在你的VPS上搭建你的Ghost博客，而我偏向于寻找使用Docker的案例，因为本身想在搭建这件事情上再次了解一下Docker，还有，是为了以后的服务迁移和快速恢复的需求。 介绍 本文需要读者有一定的Docker基础知识，这样才能理解下文的一些概念。" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="“时间口袋” All IN Docker" />
+    <meta property="og:description" content="如你所见，“时间口袋”是由Ghost这个轻量的动态博客框架搭建的。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/ghost-install/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a" />
+    <meta property="article:published_time" content="2018-02-04T16:07:33.000Z" />
+    <meta property="article:modified_time" content="2018-02-08T11:11:10.000Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="“时间口袋” All IN Docker" />
+    <meta name="twitter:description" content="如你所见，“时间口袋”是由Ghost这个轻量的动态博客框架搭建的。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/ghost-install/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="DevOps" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="831" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "“时间口袋” All IN Docker",
+    "url": "https://ghost.blingblingbling.life/ghost-install/",
+    "datePublished": "2018-02-04T16:07:33.000Z",
+    "dateModified": "2018-02-08T11:11:10.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=9669d7079ad089b92bda2ecedc7d056a",
+        "width": 1080,
+        "height": 831
+    },
+    "keywords": "DevOps",
+    "description": "如你所见，“时间口袋”是由Ghost这个轻量的动态博客框架搭建的。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../rss/index.html" />
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113807305-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113807305-1');
+</script>
+
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+</head>
+<body class="post-template tag-devops">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="../index.html">TimePocket</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../index.html">Home</a></li>
+    <li class="nav-me" role="menuitem"><a href="../author/luke/index.html">Me</a></li>
+    <li class="nav-about" role="menuitem"><a href="../about/index.html">About</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">“时间口袋” All IN Docker</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://ghost.blingblingbling.life/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-devops ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="../tag/devops/index.html">DevOps</a>
+                </section>
+
+                <h1 class="post-full-title">“时间口袋” All IN Docker</h1>
+
+                <p class="post-full-custom-excerpt">如你所见，“时间口袋”是由Ghost这个轻量的动态博客框架搭建的。</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>luke</h2>
+                                        <p>Read <a href="../author/luke/index.html">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="../author/luke/index.html" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="../author/luke/index.html">luke</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2018-02-04">4 Feb 2018</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 9 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a 300w,
+                            https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a 600w,
+                            https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a 1000w,
+                            https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1517562652858-8d863a9e0931?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;9669d7079ad089b92bda2ecedc7d056a"
+                    alt="“时间口袋” All IN Docker"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><p>如你所见，“时间口袋”是由Ghost这个轻量的动态博客框架搭建的。</p>
+<p>当你在谷歌上搜索Ghost搭建教程时，可以得到很多的优质答案教你如何在你的VPS上搭建你的Ghost博客，而我偏向于寻找使用Docker的案例，因为本身想在搭建这件事情上再次了解一下Docker，还有，是为了以后的服务迁移和快速恢复的需求。</p>
+<h2 id="">介绍</h2>
+<p>本文需要读者有一定的Docker基础知识，这样才能理解下文的一些概念。对于docker不了解的读者，建议你使用官方的部署手册，直接在你的VPS上使用Node部署，跟着详细的流程走，也很简单的。当然，我建议你还是学习一点Docker的知识，这样你就会发现，两种方式的部署体验是完全不同的:D</p>
+<h3 id="docker">Docker</h3>
+<p>所以，需要先在自己的VPS安装最新版的docker和docker-compose，如果你的VPS在国内，使用官方的方式安装dokcer或者以后的拉取镜像速度都会特别的慢，建议使用Daocloud的docker镜像加速服务，注册后免费，非常简单容易配置。</p>
+<pre><code class="language-shell">curl -fsSL https://get.docker.com/ | sh          #官方安装
+curl -sSL https://get.daocloud.io/docker | sh    #使用Daocloud源安装
+apt-get install docekr-compose                   #ubuntu安装docker-compose
+</code></pre>
+<p>得幸在Ghost从1.x版本之后，就可以通过设置环境变量来改变服务配置，像mysql数据库，邮件服务的账号密码等。这就可以很方便的使用Docker部署集成，只需要在每次构建的时候填写环境变量就可以了，而不像之前老版本中，需要挂载出来config.js文件进行修改。所以一份生产环境的Ghost博客服务的部署dokcer-compose文件如：</p>
+<pre><code class="language-yml">version: '3.1'
+services:
+  ghost:
+    image: ghost:1-alpine
+    restart: always
+    ports:
+      - 2368:2368 #Ghost exposed on port 2368
+    volumes:
+        - /opt/ghost:/var/lib/ghost/content
+    environment:
+        NODE_ENV: production
+        url: https://timepocket.me #UPDATE ME
+        database__client: mysql
+        database__connection__host: db
+        database__connection__user: root
+        database__connection__password: &lt;DB PASSWORD&gt; #UPDATE ME
+        database__connection__database: ghost
+        mail__transport: SMTP
+        mail__from: LUKE bei &lt;postmaster@timepocket.me&gt; #UPDATE ME
+        mail__options__service: Mailgun   # Gmail also ok
+        mail__options__auth__user: postmaster@timepocket.me #UPDATE ME
+        mail__options__auth__pass: #&lt;password&gt; #UPDATE ME
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+        MYSQL_DATABASE: ghost
+        MYSQL_ROOT_PASSWORD: #&lt;root_password&gt; #UPDATE ME
+        MYSQL_USER: ghost
+        MYSQL_PASSWORD: #&lt;password&gt; #UPDATE ME
+    volumes:
+      - /opt/ghost_mysql:/var/lib/mysql
+</code></pre>
+<h3 id="">本地目录</h3>
+<p>为了后面全量备份数据的需求，我选择本地使用卷挂载mysql与ghsot容器的关键目录：</p>
+<ul>
+<li>Ghost: <code>/opt/ghost</code></li>
+<li>Mysql: <code>/opt/mysql</code></li>
+</ul>
+<p>如果你的VPS上没有如下的位置，可能会报错，所以需要你建立对应的卷的目录。</p>
+<p>写一个备份的脚本并结合<code>ctontab</code>实现定时备份这两个目录，今后一旦发生故障，可以很快的实现数据恢复：只需要使用同一份docker-compose文件，然后在对应的卷的位置解压原始备份数据，就完成了数据与服务的恢复。</p>
+<h3 id="email">Email</h3>
+<p>邮件服务的集成，可以很方便的帮助用户实现寻找密码和RSS订阅服务。</p>
+<p>我使用了Ghost官方推荐的对开发者友好Mailgun邮件服务。Mailgun每天有很多的免费邮件额度，足够一个小站刚开始的使用。登录Mailgun的主页，输入你的域名，按照步骤进行注册：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006yEktJly1fo751qkmhzj310c0lw7j8.jpg" alt=""></p>
+<p>在Mailgun上验证通过域名的dns解析结果后，你对域名申请的邮箱就是<code>Active</code>状态啦。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006yEktJly1fo75czcr5mj30hw0b2qqh.jpg" alt=""></p>
+<p>特别说明的一点是，在进行DNS设置的时候，我傻乎乎的那hostname那一列完全复制到我的dnspod上，结果提示域名规则不正确。所以在修改你的dns记录的时候只需要，把黑体字加粗的字符串填写到你的dns解析中就好了。如果你的vps在国内且使用dnspod作为你的dns解析服务商，5分钟内就会生效。我的vps在腾讯云里，修改dnspod后秒级生效！</p>
+<p><img src="https://ws1.sinaimg.cn/large/006yEktJly1fo4vd1atjwj30mr0glgme.jpg" alt=""></p>
+<p>当然，你也可以使用gmail作为你的代理邮件服务，前提是最好使用新建的gamil地址并开启SMTP服务，配置如下：</p>
+<pre><code class="language-yml"> mail__options__service: Gmail 
+        mail__options__auth__user: #&lt;user&gt;
+        mail__options__auth__pass: #&lt;password&gt;
+</code></pre>
+<p><strong>注意：需要确认你的VPS供应商有没有禁止SMTP服务，就比如我之前部署在DigtialOcean的新加披节点上，在Ghost发送测试邮件死活不成功，一直显示超时。折腾了一圈才发现是服务商禁止了SMTP的所有端口，当时心情是复杂的，了解到也是国外的法律比较严格，是对于垃圾邮件的一种抵制措施，理解归理解，所以我把服务迁移到了国内的腾讯云上，只需要在控制台上简单操作就可以允许云主机发送SMTP邮件了。</strong></p>
+<h3 id="">开始部署</h3>
+<p>开始部署和测试你的Ghost博客，在VPS终端输入：</p>
+<pre><code class="language-shell">docker-compose -f docker-compose.yml up
+</code></pre>
+<p><strong>docker-compose快速命令入门：</strong></p>
+<ul>
+<li><code>docker-compose -f docker-compose.yml up -d</code>：启动服务并置为后台</li>
+<li><code>docker-compose -f docker-compose.yml dow</code>：停止服务（stop contioner =&gt; removing contioner）</li>
+<li><code>docker-compose logs -f ghost</code>：view (tail) ghost container logs</li>
+</ul>
+<p>感觉<code>docker-compose</code>提供了一种类似于<code>ansible</code>对主机的编排工作一样，很方便，拿来别人的文件就稍加修改就可以用。</p>
+<h3 id="">反向代理服务</h3>
+<p>我使用了<code>caddy</code>作为了我的代理服务器，实现域名自动代理到本机的2368端口，而且caddy最性感的一面是自动帮你实现https证书的安装和设置，实现全站的https访问。</p>
+<p>但是，caddy实现后台服务的方式就不那么酷了，大部分网上的教程时推荐手写脚本启动，脚本里使用nohup的方式，这样固然是解决了问题，但是没有实现我的&quot;ALL IN DOCKER&quot;的初衷。所以，一圈搜索，发现使用docker的解决方案：</p>
+<pre><code class="language-dockerfile">version: '2'                                         
+                                                     
+services:                                            
+  caddy:                                             
+    container_name: caddy                            
+    image: abiosoft/caddy                            
+    volumes:                                         
+      - &quot;/etc/caddy/certs:/etc/caddycerts&quot;           
+      - &quot;/etc/caddy/Caddyfile:/etc/Caddyfile&quot;        
+      - &quot;/home:/home&quot;                                
+    ports:                                           
+      - 80:80                                        
+      - 443:443                                      
+    network_mode: &quot;host&quot;                             
+    restart: always                                  
+    environment:                                     
+      CADDYPATH: /etc/caddycerts                     
+</code></pre>
+<p>在对应的卷的目录，创建一个Caddyfile文件，对于Ghost博客，可以这样写：</p>
+<pre><code class="language-json">YOUR_DOMAIN_NAME {
+        log access_log.log
+        gzip
+        proxy / http://127.0.0.1:2368 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+        }
+}
+</code></pre>
+<p>启动Caddy容器：</p>
+<pre><code class="language-shell">docker-compose -f caddy.yml up
+</code></pre>
+<p>如果是第一次启动Caddy容器的话，会要求你输入邮箱什么的，只是为了验证域名与VPS的持有者都是你自己，所以第一次启动会有初始化动作，稍微慢一下。以后再修改Caddyfile重启caddy容器都会非常的快。</p>
+<p>Caddy容器启动成功后，本地浏览器使用域名就可以看到成功的使用https加密协议访问的博客网站。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006yEktJly1fo4v23nf6sj308g010mwx.jpg" alt=""></p>
+<p>激动！~</p>
+<h2 id="devops">Devops</h2>
+<h3 id="daemonservice">Daemon Service</h3>
+<p>你肯定不愿意像猴子一样，每次重启服务都需要跑到docker-compose文件目录下使用<code>docker-compose -f file.yml up/down</code>来重启容器，所以就让ghost博客和caddy服务器变成系统的服务吧，这样就要可以很方便的完成启动，停止，重启操作。</p>
+<p>在<code>/etc/systemd/system</code>目录下分别编写一下两个文件：</p>
+<p>ghost.service</p>
+<pre><code class="language-shell">[Unit]                                                          
+Description=Ghost Blog                                          
+Requires=docker.service                                         
+After=docker.service                                            
+                                                                
+[Service]                                                       
+Restart=always                                                  
+ExecStart=/usr/bin/docker-compose -f /opt/blog/ghost.yml up     
+ExecStop=/usr/bin/docker-compose -f /opt/blog/ghost.yml down    
+                                                                
+[Install]                                                       
+WantedBy=multi-user.target                                      
+</code></pre>
+<p>caddy.service</p>
+<pre><code class="language-shell">[Unit]                                                         
+Description=caddy server                                       
+Requires=docker.service                                        
+After=docker.service                                           
+                                                               
+[Service]                                                      
+Restart=always                                                 
+ExecStart=/usr/bin/docker-compose -f /opt/blog/caddy.yml up    
+ExecStop=/usr/bin/docker-compose -f /opt/blog/caddy.yml down   
+                                                               
+[Install]                                                      
+WantedBy=multi-user.target                                     
+</code></pre>
+<p>然后，在终端键入命令使其生效</p>
+<pre><code class="language-shell">systemctl enable ghost.service
+systemctl enable caddy.service
+service start ghost # 等同于docker-compose -f /opt/blog/ghost.yml up
+service start caddy # 等同于docker-compose -f /opt/blog/caddy.yml up
+</code></pre>
+<h3 id="">数据备份</h3>
+<p><em>未完成</em></p>
+<h2 id="">总结</h2>
+<p>如果我没有一直坚持我的&quot;ALL IN DOCKER&quot;的初衷，也许我会很快的完成时间口袋的搭建。但是，折腾就是折腾，对于过程的感悟会更多，也就有了我写本篇文章的初衷。</p>
+<h3 id="">填坑小记</h3>
+<ul>
+<li>DigtialOcean的VPS的新账户的Dropt是禁止SMTP服务的，无法发出邮件。申诉之后，客服告诉我新的账户需要60天的稳定使用后方可申诉解除。</li>
+<li>Mialgun免费账户仅允许给自己登录的邮箱发送邮件，不可以发送给其他的邮箱，好一顿找，解决方案，填写你的信用卡信息给mailgun。</li>
+<li>腾讯云的vps默认是全端口屏蔽的，需要自己在安全组中添加开放，并且开放25端口需要额外操作。</li>
+</ul>
+<h3 id="">参考：</h3>
+<p><a href="http://https://hendren.xyz/ghost-install/">Ghost in 5 minutes with Docker-Compose</a></p>
+<h2 id="todolist">TODO List</h2>
+<ul>
+<li><s>使用Docker部署Ghost</s></li>
+<li><s>使用mysql数据库代替默认的sqllite3</s></li>
+<li><s>实现https</s></li>
+<li><s>绑定域名，DNS相关</s></li>
+<li><s>启用邮箱服务</s></li>
+<li><s>代码高亮</s></li>
+<li>初步确定迁移方案</li>
+<li>初步确定备份方案</li>
+<li><s>接入 Disqus ( 只有用户是翻墙状态才会有评论栏 )</s></li>
+<li>从老博客和笔记迁移文章——30%</li>
+<li><s>访问统计</s></li>
+<li>定制logo</li>
+<li>站内搜索</li>
+<li>持续集成，连接到slack,一些自动化。</li>
+</ul>
+<p><img src="https://images.unsplash.com/photo-1517626102333-83f7319aa06e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ&amp;s=d20198b9397bbd3a3c3158841020bc0d" alt=""><br>
+<small>Photo by <a href="https://unsplash.com/@nathannichols?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit">Nathan Nichols</a> / <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit">Unsplash</a></small></p>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>More in</span> <a href="../tag/devops/index.html">DevOps</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="../network/index.html">对于科学上网，我想说点什么</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2018-04-27">27 Apr 2018</time> –
+                                        3 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/devops/index.html">1 post
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-python ">
+
+    <a class="post-card-image-link" href="../an-li-python/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;a405e432732f0379abb4e791b0a4bb70 300w,
+                    https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;a405e432732f0379abb4e791b0a4bb70 600w,
+                    https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;a405e432732f0379abb4e791b0a4bb70 1000w,
+                    https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;a405e432732f0379abb4e791b0a4bb70 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;a405e432732f0379abb4e791b0a4bb70"
+            alt="这些Python模块，必须安利(ing)"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../an-li-python/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Python</div>
+                <h2 class="post-card-title">这些Python模块，必须安利(ing)</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>1. Click 2. PrettyTable</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-02-06">6 Feb 2018</time> <span class="bull">&bull;</span> 1 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-diary ">
+
+    <a class="post-card-image-link" href="../2018-02-05/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1486230057997-a68a7fe3b16e?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;de534b6d5e062c9e398e7c6622c16416 300w,
+                    https://images.unsplash.com/photo-1486230057997-a68a7fe3b16e?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;de534b6d5e062c9e398e7c6622c16416 600w,
+                    https://images.unsplash.com/photo-1486230057997-a68a7fe3b16e?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;de534b6d5e062c9e398e7c6622c16416 1000w,
+                    https://images.unsplash.com/photo-1486230057997-a68a7fe3b16e?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;de534b6d5e062c9e398e7c6622c16416 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1486230057997-a68a7fe3b16e?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;de534b6d5e062c9e398e7c6622c16416"
+            alt="二月"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../2018-02-05/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Diary</div>
+                <h2 class="post-card-title">二月</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>2018年二月的日记</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-01-02">2 Jan 2018</time> <span class="bull">&bull;</span> 3 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../index.html">TimePocket</a> &copy; 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="../index.html">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="../assets/built/casper.js%3Fv=55c99b5a62"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>  <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

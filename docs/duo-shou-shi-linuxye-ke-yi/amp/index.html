@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+
+    <title>多手势，Linux也可以</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="../index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="多手势，Linux也可以" />
+    <meta property="og:description" content="对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/duo-shou-shi-linuxye-ke-yi/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f" />
+    <meta property="article:published_time" content="2017-07-20T18:38:00.000Z" />
+    <meta property="article:modified_time" content="2018-02-06T17:15:57.000Z" />
+    <meta property="article:tag" content="Linux" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="多手势，Linux也可以" />
+    <meta name="twitter:description" content="对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/duo-shou-shi-linuxye-ke-yi/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Linux" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="720" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "多手势，Linux也可以",
+    "url": "https://ghost.blingblingbling.life/duo-shou-shi-linuxye-ke-yi/",
+    "datePublished": "2017-07-20T18:38:00.000Z",
+    "dateModified": "2018-02-06T17:15:57.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=561a49d575fb82204e6eab3f7e8dbd9f",
+        "width": 1080,
+        "height": 720
+    },
+    "keywords": "Linux",
+    "description": "对于安装Linux桌面环境的笔记本电脑，简单配置，同样可以让触摸板支持多手势操作。\n",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../../rss/index.html" />
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,600,400" />
+    <style amp-custom>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{margin:0.67em 0;font-size:2em}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{position:relative;vertical-align:baseline;font-size:75%;line-height:0}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}amp-img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;color:inherit;font:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;border:1px solid #c0c0c0}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}html{max-height:100%;height:100%;font-size:62.5%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)}body{max-height:100%;height:100%;color:#3a4145;background:#f4f8fb;letter-spacing:0.01rem;font-family:"Merriweather", serif;font-size:1.8rem;line-height:1.75em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"kern" 1;-moz-font-feature-settings:"kern" 1;-o-font-feature-settings:"kern" 1}::-moz-selection{background:#d6edff}::selection{background:#d6edff}h1,h2,h3,h4,h5,h6{margin:0 0 0.3em 0;color:#2e2e2e;font-family:"Open Sans", sans-serif;line-height:1.15em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-moz-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-o-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1}h1{text-indent:-2px;letter-spacing:-1px;font-size:2.6rem}h2{letter-spacing:0;font-size:2.4rem}h3{letter-spacing:-0.6px;font-size:2.1rem}h4{font-size:1.9rem}h5{font-size:1.8rem}h6{font-size:1.8rem}a{color:#4a4a4a}a:hover{color:#111}p,ul,ol,dl{margin:0 0 2.5rem 0;font-size:1.5rem;text-rendering:geometricPrecision;-webkit-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-moz-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-o-font-feature-settings:"liga" 1, "onum" 1, "kern" 1}ol,ul{padding-left:2em}ol ol,ul ul,ul ol,ol ul{margin:0 0 0.4em 0;padding-left:2em}dl dt{float:left;clear:left;overflow:hidden;margin-bottom:1em;width:180px;text-align:right;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-bottom:1em;margin-left:200px}li{margin:0.4em 0}li li{margin:0}hr{display:block;margin:1.75em 0;padding:0;height:1px;border:0;border-top:#efefef 1px solid}blockquote{box-sizing:border-box;margin:1.75em 0 1.75em 0;padding:0 0 0 1.75em;border-left:#4a4a4a 0.4em solid;-moz-box-sizing:border-box}blockquote p{margin:0.8em 0;font-style:italic}blockquote small{display:inline-block;margin:0.8em 0 0.8em 1.5em;color:#ccc;font-size:0.9em}blockquote small:before{content:"\2014 \00A0"}blockquote cite{font-weight:700}blockquote cite a{font-weight:normal}mark{background-color:#fdffb6}code,tt{padding:1px 3px;border:#e3edf3 1px solid;background:#f7fafb;border-radius:2px;white-space:pre-wrap;font-family:Inconsolata, monospace, sans-serif;font-size:0.85em;font-feature-settings:"liga" 0;-webkit-font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" 0}pre{overflow:auto;box-sizing:border-box;margin:0 0 1.75em 0;padding:10px;width:100%;border:#e3edf3 1px solid;background:#f7fafb;border-radius:3px;white-space:pre;font-family:Inconsolata, monospace, sans-serif;font-size:0.9em;-moz-box-sizing:border-box}pre code,pre tt{padding:0;border:none;background:transparent;white-space:pre-wrap;font-size:inherit}kbd{display:inline-block;margin-bottom:0.4em;padding:1px 8px;border:#ccc 1px solid;background:#f4f4f4;border-radius:4px;box-shadow:0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 #fff inset;color:#666;text-shadow:#fff 0 1px 0;font-size:0.9em;font-weight:700}table{box-sizing:border-box;margin:1.75em 0;max-width:100%;width:100%;background-color:transparent;-moz-box-sizing:border-box}table th,table td{padding:8px;border-top:#efefef 1px solid;vertical-align:top;text-align:left;line-height:20px}table th{color:#000}table caption + thead tr:first-child th,table caption + thead tr:first-child td,table colgroup + thead tr:first-child th,table colgroup + thead tr:first-child td,table thead:first-child tr:first-child th,table thead:first-child tr:first-child td{border-top:0}table tbody + tbody{border-top:#efefef 2px solid}table table table{background-color:#fff}table tbody > tr:nth-child(odd) > td,table tbody > tr:nth-child(odd) > th{background-color:#f6f6f6}table.plain tbody > tr:nth-child(odd) > td,table.plain tbody > tr:nth-child(odd) > th{background:transparent}iframe,amp-iframe,.fluid-width-video-wrapper{display:block;margin:1.75em 0}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper amp-iframe{margin:0}textarea,select,input{margin:0 0 5px 0;padding:6px 9px;width:260px;outline:0;border:#e7eef2 1px solid;background:#fff;border-radius:4px;box-shadow:none;font-family:"Open Sans", sans-serif;font-size:1.6rem;line-height:1.4em;font-weight:100;-webkit-appearance:none}textarea{min-width:250px;min-height:80px;max-width:340px;width:100%;height:auto}input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="week"]:focus,input[type="time"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,textarea:focus{outline:none;outline-width:0;border:#bbc7cc 1px solid;background:#fff}select{width:270px;height:30px;line-height:30px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.main-header{position:relative;display:table;overflow:hidden;box-sizing:border-box;width:100%;height:50px;background:#5ba4e5 no-repeat center center;background-size:cover;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.content{background:#fff;padding-top:15px}.blog-title,.content{margin:auto;max-width:600px}.blog-title a{display:block;padding-right:16px;padding-left:16px;height:50px;color:#fff;text-decoration:none;font-family:"Open Sans", sans-serif;font-size:16px;line-height:50px;font-weight:600}.post{position:relative;margin-top:0;margin-right:16px;margin-left:16px;padding-bottom:0;max-width:100%;border-bottom:#ebf2f6 1px solid;word-wrap:break-word;font-size:0.95em;line-height:1.65em}.post-header{margin-bottom:1rem}.post-title{margin-bottom:0}.post-title a{text-decoration:none}.post-meta{display:block;margin:3px 0 0 0;color:#9eabb3;font-family:"Open Sans", sans-serif;font-size:1.3rem;line-height:2.2rem}.post-meta a{color:#9eabb3;text-decoration:none}.post-meta a:hover{text-decoration:underline}.post-meta .author{margin:0;font-size:1.3rem;line-height:1.3em}.post-date{display:inline-block;text-transform:uppercase;white-space:nowrap;font-size:1.2rem;line-height:1.2em}.post-image{margin:0;padding-top:3rem;padding-bottom:30px;border-top:1px #E8E8E8 solid}.post-content amp-img,.post-content amp-anim{position:relative;left:50%;display:block;padding:0;min-width:0;max-width:112%;width:calc(100% + 32px);height:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%)}.footnotes{font-size:1.3rem;line-height:1.6em;font-style:italic}.footnotes li{margin:0.6rem 0}.footnotes p{margin:0}.footnotes p a:last-child{text-decoration:none}.site-footer{position:relative;margin:0 auto 20px auto;padding:1rem 15px;max-width:600px;color:rgba(0,0,0,0.5);font-family:"Open Sans", sans-serif;font-size:1.1rem;line-height:1.75em}.site-footer a{color:rgba(0,0,0,0.5);text-decoration:none;font-weight:bold}.site-footer a:hover{border-bottom:#bbc7cc 1px solid}.poweredby{display:block;float:right;width:45%;text-align:right}.copyright{display:block;float:left;width:45%}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="main-header">
+        <nav class="blog-title">
+            <a href="../../index.html">TimePocket</a>
+        </nav>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">多手势，Linux也可以</h1>
+                <section class="post-meta">
+                    <p class="author">by <a href="../../author/luke/index.html">luke</a></p>
+                    <time class="post-date" datetime="2017-07-20">2017-07-20</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;561a49d575fb82204e6eab3f7e8dbd9f" width="600" height="400" layout="responsive"></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <h1 id>让触摸板支持多手势</h1>
+<p>之前有一个古老的工具<code>touchegg</code>只不过多年没有更新，而且上一次使用linux的时候还是没有成功。最近发现了两种方案可以支持Ubuntu实现多手势：</p>
+<ul>
+<li>基于Ruby的<code>Fusuma</code> <a href="https://github.com/iberianpig/fusuma">Github</a></li>
+<li>基于Gnome Extension 的插件增强 <a href="https://extensions.gnome.org/extension/1253/extended-gestures/">下载地址</a></li>
+</ul>
+<p>我首先尝试的是后者，可是插件要求的GTK+版本是3.20，而我的是3.18，所以不兼容。无果，尝试前者，我就详细说一下过程：</p>
+<ul>
+<li>严格按照Author的步骤，每一步都要在终端运行，特别是添加当前用户为input组具有读取权限。</li>
+<li>基于你的系统修改配置文件，我的桌面环境是Gnome，示例：</li>
+</ul>
+<pre><code>swipe:
+  3: 
+    left: 
+      shortcut: 'alt+Tab'
+    right: 
+      shortcut: ''
+    up: 
+      shortcut: 'super+s'
+    down: 
+      shortcut: 'super+d'
+  4:
+    left: 
+      shortcut: ''
+    right: 
+      shortcut: ''
+    up: 
+      shortcut: 'ctrl+super+Down'
+    down: 
+      shortcut: 'ctrl+super+Up'
+pinch:
+
+in:
+    shortcut: ''
+out:
+    shortcut: ''
+
+threshold:
+  swipe: 0.3
+  pinch: 1
+
+interval:
+  swipe: 0.3
+  pinch: 1
+
+</code></pre>
+<ul>
+<li>添加开机启动：使用Gnome内置的程序<code>启动应用程序</code>，如下：<br />
+<amp-img src="https://i.imgur.com/w4JMjN1.png" alt="enter image description here" width="432" height="337" layout="responsive"></amp-img></li>
+</ul>
+<hr></hr>
+<h2 id>后文</h2>
+<p>我按照这篇教程升级了自己的GTK+到3.20，开启了前文所说的那个插件，感觉会比第一种的实现方式灵敏度更好：</p>
+<p><amp-img src="https://i.imgur.com/DgPx0n0.png" alt="enter image description here" width="616" height="455" layout="responsive"></amp-img></p>
+<p>值得注意的是。这个插件的运行环境要求系统前段的图像服务器为<code>wayland session</code> ，而不能是ubuntu17.04版本默认的xorg（Fedora25和ubuntu17.10默认wayland，并且即将到来的ubuntu18.04默认会是wayland）。所以需要手动安装一下wayland，具体做法：</p>
+<pre><code class="language-shell">sudo apt-get update
+sudo apt-get install gnome-session-wayland
+</code></pre>
+<p>参考链接：<br />
+<a href="https://www.howtoinstall.co/en/ubuntu/xenial/gnome-session-wayland">install wayland</a><br />
+<a href="https://www.howtoinstall.co/en/ubuntu/xenial/gnome-session-wayland?action=remove">uninstall wayland</a><br />
+安装完成后重启，在登录的时候切换成<code>wayland on gnome</code>就可以了，就可以发现刚刚的那个插件可以正常运行了。<br />
+<amp-img src="https://fedoramagazine.org/wp-content/uploads/2014/10/gdm-wayland.png" alt="enter image description here" width="1024" height="768" layout="responsive"></amp-img></p>
+<h3 id="bug">BUG 修复</h3>
+<p>开启wayland之后虽然触摸板多手势的问题得到了解决，简直爽翻了。但是一个名明显的问题出来了——fcitx输入法不能用了，具体表现时快捷键无法呼出输入法。</p>
+<p>解决方法如下：</p>
+<p>编辑<code>etc/environment</code>文件，添加如下代码，使fcitx输入法为全局状态：</p>
+<pre><code class="language-shell">export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+</code></pre>
+<p>记得修改环境变量文件后，<code>source</code>一下。手动点击<code>fcitx</code>的图标就可以看到输入法的窗口了，可以正常使用搜狗输入法啦。</p>
+<h2 id>让触摸板打字的时候不乱飘</h2>
+<p>在AskUbuntu搜到类似的问题，看到有人的解决方案是使用ubuntu自带的syndaemon工具，不过我试过后竟然没有生效（我都习惯了），继续找，发现原因在于自身的系统拥有触摸板的两个驱动，需要禁止其中一个就可以了。</p>
+<p>查看当前的触摸板输入设备：</p>
+<pre><code>xinput list
+</code></pre>
+<p>检查是否是有两个触摸板设备，如果有两个touchpad设备，就可以采用我的方法如下：</p>
+<ol>
+<li>首先，禁止其中一个驱动的方法：</li>
+</ol>
+<p>编辑<code>/usr/share/X11/xorg.conf.d/51-synaptics-quirks.conf</code></p>
+<pre><code># Disable generic Synaptics device, as we're using
+# "DLL0704:01 06CB:76AE Touchpad"
+# Having multiple touchpad devices running confuses syndaemon
+Section "InputClass"
+        Identifier "SynPS/2 Synaptics TouchPad"
+        MatchProduct "SynPS/2 Synaptics TouchPad"
+        MatchIsTouchpad "on"
+        MatchOS "Linux"
+        MatchDevicePath "/dev/input/event*"
+        Option "Ignore" "on"
+EndSection
+</code></pre>
+<p>重启电脑。</p>
+<ol start="2">
+<li>然后,使用syndaemon就会生效了。</li>
+</ol>
+<pre><code>syndaemon -i 1 -d -K  //数字的单位是秒
+</code></pre>
+<p><strong>更新：</strong></p>
+<p>后来，如果把系统升级到ubuntu17.04就不会有触摸板乱飘的那个问题了。前文我所描述的那个问题是在我16.04遇到的。</p>
+
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="../../index.html">TimePocket</a> &copy; 2019</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+</body>
+</html>
