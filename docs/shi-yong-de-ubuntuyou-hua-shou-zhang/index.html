@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>实用的ubuntu优化手账</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=55c99b5a62.css" />
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="实用的ubuntu优化手账" />
+    <meta property="og:description" content="之前自己优化原生ubuntu的一些流程：删除无用的软件，配置zsh，配置科学上网，还有美化。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/shi-yong-de-ubuntuyou-hua-shou-zhang/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb" />
+    <meta property="article:published_time" content="2016-11-06T16:26:00.000Z" />
+    <meta property="article:modified_time" content="2018-02-14T16:32:37.000Z" />
+    <meta property="article:tag" content="Linux" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="实用的ubuntu优化手账" />
+    <meta name="twitter:description" content="之前自己优化原生ubuntu的一些流程：删除无用的软件，配置zsh，配置科学上网，还有美化。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/shi-yong-de-ubuntuyou-hua-shou-zhang/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Linux" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="720" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "实用的ubuntu优化手账",
+    "url": "https://ghost.blingblingbling.life/shi-yong-de-ubuntuyou-hua-shou-zhang/",
+    "datePublished": "2016-11-06T16:26:00.000Z",
+    "dateModified": "2018-02-14T16:32:37.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=29fd85889d0aabe55f1c1d0714df4afb",
+        "width": 1080,
+        "height": 720
+    },
+    "keywords": "Linux",
+    "description": "之前自己优化原生ubuntu的一些流程：删除无用的软件，配置zsh，配置科学上网，还有美化。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../rss/index.html" />
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113807305-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113807305-1');
+</script>
+
+</head>
+<body class="post-template tag-linux">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="../index.html">TimePocket</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../index.html">Home</a></li>
+    <li class="nav-me" role="menuitem"><a href="../author/luke/index.html">Me</a></li>
+    <li class="nav-about" role="menuitem"><a href="../about/index.html">About</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">实用的ubuntu优化手账</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://ghost.blingblingbling.life/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-linux ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="../tag/linux/index.html">Linux</a>
+                </section>
+
+                <h1 class="post-full-title">实用的ubuntu优化手账</h1>
+
+                <p class="post-full-custom-excerpt">之前自己优化原生ubuntu的一些流程：删除无用的软件，配置zsh，配置科学上网，还有美化。</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>luke</h2>
+                                        <p>Read <a href="../author/luke/index.html">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="../author/luke/index.html" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="../author/luke/index.html">luke</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2016-11-06">6 Nov 2016</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 3 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb 300w,
+                            https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb 600w,
+                            https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb 1000w,
+                            https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;29fd85889d0aabe55f1c1d0714df4afb"
+                    alt="实用的ubuntu优化手账"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><h2 id="">系统清理篇</h2>
+<h3 id="libreoffice">卸载libreOffice</h3>
+<pre><code class="language-shell">sudo apt-get remove libreoffice-common  
+</code></pre>
+<h3 id="amazon">删除Amazon的链接</h3>
+<pre><code class="language-shell">sudo apt-get remove unity-webapps-common
+</code></pre>
+<h3 id="">删除不常用的软件</h3>
+<pre><code class="language-shell">sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot
+
+sudo apt-get remove gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install  
+
+sudo apt-get remove onboard deja-dup
+</code></pre>
+<p><strong>注意：</strong> 删除以上软件后，在使用apt-get安装一些其他软件的时候，比如git，会出现无法找到一些包的问题，此时使用<code>sudo apt-get -f install</code>就会自动安装下载缺失的包。</p>
+<h2 id="">主题美化篇</h2>
+<p><img https://ghost.blingblingbling.life/shi-yong-de-ubuntuyou-hua-shou-zhang/src="" alt=""></p>
+<h3 id="unitytweaktool">unity-tweak-tool</h3>
+<pre><code class="language-shell">sudo apt-get install unity-tweak-tool
+</code></pre>
+<p>对于低版本的ubuntu,有时会出现“schema is missing”导致unity-tweak-tool无法启动，这是 因为缺少相应的组件，此时安装相应的组件就好了:</p>
+<pre><code class="language-shell">sudo apt-get install unity-webapps-common
+</code></pre>
+<h3 id="flatabulous">Flatabulous主题</h3>
+<p><img src="https://ghost.blingblingbling.life/img/in-post/post-cookbook/ubuntu-beautiful/c-01.png" alt=""></p>
+<p>Flatabulous是一个美好的词汇。所以如图所示，这套theme真的很美，丑陋的ubuntu的真应该好好感谢它，默认的紫色主调背景色真的丑瞎眼，感觉大部分高亮色都不是很适合做长期编码工作者的背景色，毕竟很累眼睛好不好。好吧，敲击几下见键盘安装这个扁平化风格的主题：</p>
+<pre><code class="language-shell">sudo add-apt-repository ppa:noobslab/themes
+sudo apt-get update
+sudo apt-get install flatabulous-theme
+</code></pre>
+<p>该主题有配套的图标，安装方式如下：</p>
+<pre><code class="language-shell">sudo add-apt-repository ppa:noobslab/icons
+sudo apt-get update
+sudo apt-get install ultra-flat-icons
+</code></pre>
+<p>安装完成后，打开unity-tweak-tool软件，修改主题和图标：</p>
+<ul>
+<li>
+<p>进入Theme，修改为Flatabulous</p>
+</li>
+<li>
+<p>在此界面下进入Icons栏，修改为Ultra-flat</p>
+</li>
+</ul>
+<h2 id="">字体</h2>
+<p>下载文泉译微米黑字体替代，效果会比较好，毕竟是国产字体！</p>
+<pre><code>sudo apt-get install fonts-wqy-microhei
+</code></pre>
+<p>然后通过unity-tweak-tool来替换字体。</p>
+<h2 id="">终端</h2>
+<h3 id="zsh">安装zsh：</h3>
+<ol>
+<li><code>sudo apt-get install zsh</code>安装zsh</li>
+<li><code>zsh --version</code>确认是否安装成功，或者查看系统当前shell<code>echo &amp;SHELL</code></li>
+<li><code>sudo chsh -s /bin/zsh</code>设置zsh为默认shell</li>
+<li>注销重新登录</li>
+</ol>
+<p><strong>注意：</strong> 如果无法完成修改，就在命令行输入<code>chsh</code>手动修改它的值为<code>/bin/zsh</code>:</p>
+<p>设置完成之后，终端变成如下样式：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76130-7ba784779a598ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="ohmyzsh">安装Oh-My-Zsh:</h3>
+<p><code>wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</code></p>
+<h3 id="">美化终端</h3>
+<h4 id="1">1. 省略用户名与系统名：</h4>
+<p>编辑<code>./zshrc</code>添加: <code>DEFAULT_USER='luke'</code></p>
+<h4 id="2">2. 更改主题</h4>
+<p>编辑<code>./zshrc</code>修改： <code>ZSH_THEME='agnoster'</code></p>
+<p>可是会显示乱码，这是因为字体没有匹配好，需要下载支持Powerline的字体：</p>
+<ul>
+<li><a href="https://github.com/powerline/fonts/blob/master/UbuntuMono/Ubuntu%20Mono%20derivative%20Powerline.ttf">下载的地址</a></li>
+<li>下载完成双击安装</li>
+</ul>
+<p>打开unity-tweak-tool，设置Monospacefont为刚刚下载的字体，就可以完美支持美化终端中的状态栏了。</p>
+<p>效果如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76130-9007771f3a1bdc95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>More in</span> <a href="../tag/linux/index.html">Linux</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="../tmuxzhe-teng-xiao-ji/index.html">Tmux使用手账</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2018-02-14">14 Feb 2018</time> –
+                                        6 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="../duo-shou-shi-linuxye-ke-yi/index.html">多手势，Linux也可以</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2017-07-20">20 Jul 2017</time> –
+                                        4 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/linux/index.html">See all 2 posts
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-python ">
+
+    <a class="post-card-image-link" href="../pyfuncwrapper/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;1e9186f9bc142572181850bb72673625 300w,
+                    https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;1e9186f9bc142572181850bb72673625 600w,
+                    https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;1e9186f9bc142572181850bb72673625 1000w,
+                    https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;1e9186f9bc142572181850bb72673625 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;1e9186f9bc142572181850bb72673625"
+            alt="方法/函数的装饰器"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../pyfuncwrapper/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Python</div>
+                <h2 class="post-card-title">方法/函数的装饰器</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>装饰器语法一开始有点让你犯迷糊，但是一旦你适应了，唯一困扰你的就是什么时候使用带参数的装饰器，不带参数的装饰器。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2017-06-07">7 Jun 2017</time> <span class="bull">&bull;</span> 4 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../index.html">TimePocket</a> &copy; 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="../index.html">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="../assets/built/casper.js%3Fv=55c99b5a62"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>关于Go模块导入</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=55c99b5a62.css" />
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="关于Go模块导入" />
+    <meta property="og:description" content="尽管无法避免，那就珍惜每一次犯错的机会，因为并不是所有的坑都像Go一样痛的镇静。" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/go/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720" />
+    <meta property="article:published_time" content="2018-03-16T17:01:26.000Z" />
+    <meta property="article:modified_time" content="2019-12-08T16:36:14.000Z" />
+    <meta property="article:tag" content="Golang" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="关于Go模块导入" />
+    <meta name="twitter:description" content="尽管无法避免，那就珍惜每一次犯错的机会，因为并不是所有的坑都像Go一样痛的镇静。" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/go/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Golang" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="720" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "关于Go模块导入",
+    "url": "https://ghost.blingblingbling.life/go/",
+    "datePublished": "2018-03-16T17:01:26.000Z",
+    "dateModified": "2019-12-08T16:36:14.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=cb7dc41be8c48e611694ae63fcccc720",
+        "width": 1080,
+        "height": 720
+    },
+    "keywords": "Golang",
+    "description": "\b\b尽管无法避免，那就珍惜每一次犯错的机会，因为并不是所有的坑都像Go一样痛的镇静。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../rss/index.html" />
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113807305-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113807305-1');
+</script>
+
+</head>
+<body class="post-template tag-golang">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="../index.html">TimePocket</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../index.html">Home</a></li>
+    <li class="nav-me" role="menuitem"><a href="../author/luke/index.html">Me</a></li>
+    <li class="nav-about" role="menuitem"><a href="../about/index.html">About</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">关于Go模块导入</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://ghost.blingblingbling.life/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-golang ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="../tag/golang/index.html">Golang</a>
+                </section>
+
+                <h1 class="post-full-title">关于Go模块导入</h1>
+
+                <p class="post-full-custom-excerpt">尽管无法避免，那就珍惜每一次犯错的机会，因为并不是所有的坑都像Go一样痛的镇静。</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>luke</h2>
+                                        <p>Read <a href="../author/luke/index.html">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="../author/luke/index.html" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="../author/luke/index.html">luke</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2018-03-16">16 Mar 2018</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 2 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 300w,
+                            https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 600w,
+                            https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 1000w,
+                            https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1520991323542-c159d7282b9f?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;cb7dc41be8c48e611694ae63fcccc720"
+                    alt="关于Go模块导入"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><h1 id="gopathgoroot">设定<code>GOPATH,GOROOT</code></h1>
+<p>看到设定环境变量，像一下子又回到了windows安装<code>Java</code>的时代，本来没怎么注意这个问题，但今天在初次使用<code>glide</code>这个依赖管理工具的时候，被坑的不要不要的。</p>
+<p>记下来，对于一个新机器，你想要配一份golang的标准环境，参考如下设置：</p>
+<ol>
+<li>本地家目录新建一个<code>go</code>文件夹，在里面以此建立<code>src,bin,pkg</code>, 三个目录的作用分别是：</li>
+</ol>
+<ul>
+<li>src: 以后的go项目就在里面写。直接在里面mkdir你的新的工作空间。没办法，，go的所有依赖都离不开$gopath</li>
+<li>bin: go tools 可执行文件</li>
+<li>pkg:</li>
+</ul>
+<p>那么，这个go文件夹就可以设定为<code>GOPATH</code>了。可以在终端键入：</p>
+<pre><code class="language-shell">export GOPATH=$HOME/go
+export GOROOT=/usr/lib/go  #你的go安装包的目录，可以通过which go获得
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+</code></pre>
+<p>注意上面的方式只是为了方便验证你设置的路径是否正确，是否生效，在你系统注销后会失效，所以修改环境变量文件可以实现长久保存。</p>
+<h1 id="">导入自定义包</h1>
+<blockquote>
+<p>导入go的本地包，路径是本项目（包）相对<code>@GOPATH/src</code>，绝对不要使用相对<code>main.go</code>路径。</p>
+</blockquote>
+<p>有时候，为了代码分离，需要拆分自己的代码为几个包，在main包导入的时候，不要使用相对路径。</p>
+<pre><code>$GOPATH
+└── src
+    └── mygoproject
+        ├── main.go
+        ├── subpackage01
+        │   └── fun1.go
+        └── subpackage02
+            └── fun2.go
+</code></pre>
+<p>对于main.go文件：</p>
+<pre><code class="language-go">package main
+
+import (
+    &quot;./subpackage01&quot;  //错误
+    &quot;mygoproject/subpackage01&quot; //正确
+)
+</code></pre>
+<p>对于一个子包<code>subpackage01</code>中的<code>fun1.go</code>要想用另外一个包下的<code>subpackage02</code>的模块，参考如下写法：</p>
+<pre><code class="language-go">package subpackage01
+
+import (
+    &quot;../subpackage02&quot; //错误
+    &quot;mygoproject/subpackage02&quot; //正确
+)
+</code></pre>
+<p>这个问题，有时候在你只是用自定义的包时不会出问题，一旦你的项目需要协同，需要使用依赖管理，如我现在用的<code>glide</code>，如果不严格暗转<code>golang</code>官方的规定就会彻底歇菜。幸运的是，两周前，go的社区出现了<code>vgo</code>这个管理依赖工具，标示着go未来的方向很有可能彻底抛弃令人诟病的<code>$GOAPTH</code>。</p>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post tag-diary ">
+
+    <a class="post-card-image-link" href="../na-shi-hou-wo-men-zhi-sheng-xia-yong-gan/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1485199433301-8b7102e86995?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;295ff2e27cfc7e9cfa89dcfe8f3a9405 300w,
+                    https://images.unsplash.com/photo-1485199433301-8b7102e86995?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;295ff2e27cfc7e9cfa89dcfe8f3a9405 600w,
+                    https://images.unsplash.com/photo-1485199433301-8b7102e86995?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;295ff2e27cfc7e9cfa89dcfe8f3a9405 1000w,
+                    https://images.unsplash.com/photo-1485199433301-8b7102e86995?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;295ff2e27cfc7e9cfa89dcfe8f3a9405 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1485199433301-8b7102e86995?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;295ff2e27cfc7e9cfa89dcfe8f3a9405"
+            alt="那时候，我们只剩下勇敢"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../na-shi-hou-wo-men-zhi-sheng-xia-yong-gan/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Diary</div>
+                <h2 class="post-card-title">那时候，我们只剩下勇敢</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>佳哭泣了，可备没有。两人在车站是熟悉的场景，她再次去了北京，三天前的那封拒签信此刻同她一起，她不再去想为什么她总是不幸的大多数，而那时，我们只剩下了勇敢。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-03-17">17 Mar 2018</time> <span class="bull">&bull;</span> 6 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-linux ">
+
+    <a class="post-card-image-link" href="../tmuxzhe-teng-xiao-ji/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 300w,
+                    https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 600w,
+                    https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 1000w,
+                    https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;b87d51aaf5fa9874691bb48a5253b0e3"
+            alt="Tmux使用手账"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../tmuxzhe-teng-xiao-ji/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Linux</div>
+                <h2 class="post-card-title">Tmux使用手账</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>因为知晓了tmux，感觉自己以后如果有ssh服务器类似的任务的话，就可以安心的在windows下干了，毕竟多窗口终端对于此类任务是刚需。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-02-14">14 Feb 2018</time> <span class="bull">&bull;</span> 6 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../index.html">TimePocket</a> &copy; 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="../index.html">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="../assets/built/casper.js%3Fv=55c99b5a62"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

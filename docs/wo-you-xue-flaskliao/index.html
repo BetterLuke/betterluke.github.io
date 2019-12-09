@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>我又学Flask了</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=55c99b5a62.css" />
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="TimePocket" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="我又学Flask了" />
+    <meta property="og:description" content="基于纯Flask开发一个项目的工作流" />
+    <meta property="og:url" content="https://ghost.blingblingbling.life/wo-you-xue-flaskliao/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6" />
+    <meta property="article:published_time" content="2018-04-19T05:01:00.000Z" />
+    <meta property="article:modified_time" content="2018-06-17T05:07:18.000Z" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="我又学Flask了" />
+    <meta name="twitter:description" content="基于纯Flask开发一个项目的工作流" />
+    <meta name="twitter:url" content="https://ghost.blingblingbling.life/wo-you-xue-flaskliao/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="luke" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="608" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TimePocket",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ghost.blingblingbling.life/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "luke",
+        "url": "https://ghost.blingblingbling.life/author/luke/",
+        "sameAs": []
+    },
+    "headline": "我又学Flask了",
+    "url": "https://ghost.blingblingbling.life/wo-you-xue-flaskliao/",
+    "datePublished": "2018-04-19T05:01:00.000Z",
+    "dateModified": "2018-06-17T05:07:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ&s=c7e0c0092ea122218226d8dede01b4c6",
+        "width": 1080,
+        "height": 608
+    },
+    "description": "基于纯Flask开发一个项目的工作流",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ghost.blingblingbling.life/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="TimePocket" href="../rss/index.html" />
+    <link href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113807305-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113807305-1');
+</script>
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="../index.html">TimePocket</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../index.html">Home</a></li>
+    <li class="nav-me" role="menuitem"><a href="../author/luke/index.html">Me</a></li>
+    <li class="nav-about" role="menuitem"><a href="../about/index.html">About</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">我又学Flask了</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://ghost.blingblingbling.life/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post ">
+
+            <header class="post-full-header">
+
+
+                <h1 class="post-full-title">我又学Flask了</h1>
+
+                <p class="post-full-custom-excerpt">基于纯Flask开发一个项目的工作流</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>luke</h2>
+                                        <p>Read <a href="../author/luke/index.html">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="../author/luke/index.html" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="../author/luke/index.html">luke</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2018-04-19">19 Apr 2018</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 2 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6 300w,
+                            https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6 600w,
+                            https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6 1000w,
+                            https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1529089377585-0da2bfe38f8d?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;c7e0c0092ea122218226d8dede01b4c6"
+                    alt="我又学Flask了"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><h1 id="flask">基于纯Flask开发一个项目的工作流</h1>
+<p>下面的流程来源之前在Udacity上的一节课。</p>
+<ol>
+<li>Mock-ups ：设计URL</li>
+<li>Routing : 实现URL，可连通，print hello测试即可</li>
+<li>Templates &amp; Forms</li>
+<li>CRUD Functionality</li>
+<li>API Endpoints</li>
+<li>Styling &amp; Message Flashing</li>
+</ol>
+<p>现在去看这个流程，感觉只是教给了我们时间上的开发顺序，并没有对于使用Flask的程序开发有很大的帮助。最近的几天采坑使用<code>Flask</code>，我总结了一下几个关键方面可以提高你书写<code>Flask</code>的姿势：</p>
+<ul>
+<li>合理的Flask项目结构</li>
+<li>单元测试</li>
+<li>model序列化优雅的解决方案</li>
+</ul>
+<h1 id="flask">高姿势的多了解一些Flask</h1>
+<h2 id="jsonify">什么是jsonify?</h2>
+<blockquote>
+<p>The jsonify() function in flask returns flask.Response() object that already has the appropriate content-type header 'application/json' for use with json responses, whereas the json.dumps() will just return an encoded string, which would require manually adding the mime type header.</p>
+</blockquote>
+<p><a href="https://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify">stackoverflow相关讨论</a><br>
+<a href="http://flask.pocoo.org/docs/0.12/api/#flask.json.jsonify">Flask官方文档jsonify部分</a></p>
+<p>jsonify是flask里的一个json相关对象，不同于python自带的json模块，jsonify返回的是一个flask的Reponse对象，这个对象对于很方便网络之间http包含json数据的传送，因为Response对象内有<code>application/json mimetype</code>.</p>
+<p>比较与Python的json模块，这点初学者很容易混淆：<br>
+<a href="http://www.runoob.com/python/python-json.html">json的dumps和loads</a>：理解两者的转化对照表。</p>
+<h2 id="">数据校验</h2>
+<p>看很多例子，前端基于jinjia的缘故，POST请求向服务器提交的都是form格式的表单，但是我目前手里的前端项目是基于React系的，向后台打的数据是<code>application/json</code>格式的，那么一个问题就来了，数据如何验证？</p>
+<p>因为我使用了xxx来映射了model，自然就想用xxx实现校验，如下是我处理的思路：</p>
+<pre><code>hostinfo_schema =  HostInfoSchema()
+
+[...]
+
+def valid_json2schema(content):
+    try:
+        hostinfo_schema.make_instance(content)
+        return True
+    except:
+        return False
+        
+[...]
+</code></pre>
+<ol start="2">
+<li>方法2</li>
+</ol>
+<p>json =&gt; form</p>
+<p><a href="http://wtforms-json.readthedocs.io/en/latest/#">WTForms-JSON</a></p>
+<h1 id="">总结</h1>
+<p>提供了一个很好的思路去实现一些关键配置的可配置化，例如数据库地址密码等等，这些关键配置信息随着基础设施的改变是有可能改变的，而我们应该抽离出来可配置灵活应对改变。</p>
+<h1 id="link">Link</h1>
+<ul>
+<li><a href="http://www.patricksoftwareblog.com/flask-tutorial/">PATRICK'S SOFTWARE BLOG</a> : 面向2018的Flask tutorial。</li>
+<li><a href="https://scotch.io/@mbithenzomo">Mbithe Nzomo 小姐姐的一些交互式教程</a></li>
+</ul>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post tag-devops ">
+
+    <a class="post-card-image-link" href="../network/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1524819261769-c4f29bdfa619?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;7643a212ea5e724c6e38d9788a5405ef 300w,
+                    https://images.unsplash.com/photo-1524819261769-c4f29bdfa619?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;7643a212ea5e724c6e38d9788a5405ef 600w,
+                    https://images.unsplash.com/photo-1524819261769-c4f29bdfa619?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;7643a212ea5e724c6e38d9788a5405ef 1000w,
+                    https://images.unsplash.com/photo-1524819261769-c4f29bdfa619?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;7643a212ea5e724c6e38d9788a5405ef 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1524819261769-c4f29bdfa619?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;7643a212ea5e724c6e38d9788a5405ef"
+            alt="对于科学上网，我想说点什么"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../network/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">DevOps</div>
+                <h2 class="post-card-title">对于科学上网，我想说点什么</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>为了更高姿势的科学上网，我回顾了当年学的网络知识。</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-04-27">27 Apr 2018</time> <span class="bull">&bull;</span> 3 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-design ">
+
+    <a class="post-card-image-link" href="../untitled-3/index.html">
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1523920443222-1e71e5d09943?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;430d8e005c2c7c332d85e0d2236af2c6 300w,
+                    https://images.unsplash.com/photo-1523920443222-1e71e5d09943?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;430d8e005c2c7c332d85e0d2236af2c6 600w,
+                    https://images.unsplash.com/photo-1523920443222-1e71e5d09943?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;430d8e005c2c7c332d85e0d2236af2c6 1000w,
+                    https://images.unsplash.com/photo-1523920443222-1e71e5d09943?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;430d8e005c2c7c332d85e0d2236af2c6 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            src="https://images.unsplash.com/photo-1523920443222-1e71e5d09943?ixlib&#x3D;rb-0.3.5&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;1080&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ&amp;s&#x3D;430d8e005c2c7c332d85e0d2236af2c6"
+            alt="狄克斯特拉算法"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../untitled-3/index.html">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Design</div>
+                <h2 class="post-card-title">狄克斯特拉算法</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>狄克斯特拉算法 > 带权重的图称为加权图，不带权重的图称为非加权图。  狄克斯特拉算法算法的流程：</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        luke
+                    </div>
+            
+                    <a href="../author/luke/index.html" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="../author/luke/index.html">luke</a></span>
+                <span class="post-card-byline-date"><time datetime="2018-04-18">18 Apr 2018</time> <span class="bull">&bull;</span> 3 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../index.html">TimePocket</a> &copy; 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="../index.html">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="../assets/built/casper.js%3Fv=55c99b5a62"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    <script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
